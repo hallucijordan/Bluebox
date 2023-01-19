@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="never">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <title>编辑您的评论或攻略~</title>
+    <link rel="stylesheet" href="css/comment.css">
+    <script src="js/jquery-3.6.3.js"></script>
+    <style>
+        body{
+            background-image:url(./images/comment2.jpg);
+            background-repeat:no-repeat;
+            background-size:100% 100%;
+            background-attachment:fixed;
+            background-size:cover;
+        }
+    </style>
+
+    <script>
+
+        function disp_prompt()
+        {
+            var text = document.getElementById('text').value;
+            var choice = $("input[name='radio']:checked").val();
+            var comment = choice+text;
+            alert(comment);
+            document.write("提交成功!");
+
+        }
+
+    </script>
+</head>
+<body >
+    <p class="first">
+        <h1 style="text-align:center; font-size:50px; color:rgb(255, 209, 167)">
+            评论和攻略
+        </h1>
+        <h2 style="margin-left: 20px;  color: bisque;">
+            编辑你的评论和攻略~
+        </h2>
+        <fieldset   style=" margin-left: 20px; margin-right:20px; color: bisque; font-size: 25px;">
+            <p id="choice">
+                推荐程度:
+                <input type="radio" name="radio" id="" value="差 ">
+                差
+                <input type="radio" name="radio" id="" value="一般般 ">
+                一般般
+                <input type="radio" name="radio" id="" value="好 ">
+                好
+                <input type="radio" name="radio" id="" value="非常好 ">
+                非常好
+            </p>
+        </fieldset>
+        
+
+        <p>
+            <textarea  placeholder="编写你的评论或者攻略~" name="" id="text" cols="100" rows="10" style="margin-left: 20px; font-size: 20px; margin-right: 20px;"></textarea>
+            <!-- <input type="button" onclick="disp_prompt()" value="Display a prompt box" /> -->
+        </p>
+
+        <br>
+        <p>
+            <button type="submit" onclick="disp_prompt()" style="margin-left: 100px; width: 150px; height: 80px; font-size: 30px;">
+                submit
+            </button>
+        </p>
+    </p>
+
+
+
+</body>
+</html>

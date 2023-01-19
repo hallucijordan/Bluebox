@@ -1,0 +1,504 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.scrollbar::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+    background-color: #CCFFCC;
+}
+.scrollbar::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: rgba(144,147,153,0.4);
+}
+.scrollbar:hover::-webkit-scrollbar-thumb{
+    background-color: rgba(144,147,153,0.6);
+    cursor: cell;
+}
+.scrollbar:active::-webkit-scrollbar-thumb{
+    background-color: rgba(144,147,153,0.8);
+}
+.emeditor{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    min-height: 100px;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    color:#353535;
+}
+.emeditor *{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+.emeditor>.menubar{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background-color: #eeeeee;
+    padding: 6px 0px 6px 0px;
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    -khtml-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+.emeditor>.menubar>.iconbox {
+    float: left;
+    width: 28px;
+    height: 28px;
+    margin-left: 6px;
+    padding: 2px;
+    cursor:pointer;
+    transition: all ease 200ms;
+}
+.emeditor>.menubar>.activeicon{
+    background-color:#dddddd;
+}
+.emeditor>.menubar>.iconbox:hover{
+    background-color:#d0d0d0;
+}
+.emeditor>.menubar>.iconbox:active{
+    background-color:#cccccc;
+}
+.emeditor>.menubar>.iconbox>input{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0%;
+    font-size: 0;
+    cursor: pointer;
+}
+.emeditor>.menubar>.iconbox>.icon{
+    width:24px;
+    height:24px;
+    overflow:hidden;
+    font-size:20px;
+    transition: all ease 100ms;
+}
+.emeditor>.menubar>.iconbox>.enabled{
+    fill:#555555;
+}
+.emeditor>.menubar>.iconbox>.enabled:hover{
+    fill:#00D1B2;
+}
+.emeditor>.menubar>.iconbox>.disabled{
+    fill:#dddddd;
+}
+.emeditor>.main{
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    overflow: hidden;
+}
+.emeditor>.main>textarea{
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    color: #555555;
+    overflow-y: auto;
+    resize: none;
+    border: 0px;
+    z-index: 1000;
+}
+.emeditor>.popup{
+    position: absolute;
+    width: 200px;
+    height: max-content;
+    padding: 4px;
+    overflow-y: auto;
+    box-shadow: 0px 0px 4px #cccccc;
+    background-color: #f7f7f7;
+    z-index: 999;
+}
+.emeditor>.popup>ul{
+    width: 100%;
+    height: max-content;
+}
+.emeditor>.popup>ul>li{
+    list-style-type: none;
+    width: 100%;
+    height: auto;
+    margin-top: 2px;
+    cursor: pointer;
+}
+.emeditor>.popup>.activeitem>li:hover{
+    background-color: #e3e3e3;
+}
+.emeditor>.popup>.color{
+    float: left;
+    width: 18px;
+    height: 18px;
+    margin: 2px;
+    cursor: pointer;
+}
+.emeditor>.popup>.color:hover{
+    border: 1px solid #e3e3e3;
+}
+.emeditor>.popup>.menutable{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.emeditor>.popup>.menutable tr{
+    width: 100%;
+    height: 20px;
+}
+.emeditor>.popup>.menutable td{
+    width: 18px;
+    height: 18px;
+    background: #ccf3ed;
+}
+.emeditor>.dialogmask{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
+}
+.emeditor>.dialog{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    left: 10%;
+    top: 10%;
+    border-radius: 4px;
+    user-select: none;
+    overflow: hidden;
+    box-shadow: 0px 0px 4px #cccccc;
+    background-color: #f7f7f7;
+    z-index: 998;
+}
+.emeditor>.dialog>.titlebar{
+    display: flex;
+    width: 100%;
+    height: 32px;
+    background-color: #e7e7e7;
+}
+.emeditor>.dialog>.titlebar>.title{
+    flex: 1;
+    font-weight: 700;
+    font-size: 14px;
+    color: #585858;
+    line-height: 32px;
+    padding-left: 6px;
+}
+.emeditor>.dialog>.titlebar>.closebtn{
+    width: 32px;
+    height: 32px;
+    border-bottom-color:#585858;
+    cursor: pointer;
+}
+.emeditor>.dialog>.titlebar>.closebtn:hover{
+    background-color: #ff4411;
+    border-bottom-color:#f7f7f7;
+}
+.emeditor>.dialog>.titlebar>.closebtn>.closeicon{
+    width: 18px;
+    height: 16px;
+    margin-top: 4px;
+    border-bottom: 2px solid;
+    border-bottom-color: inherit;
+    transform: rotate(-45deg);
+}
+.emeditor>.dialog>.titlebar>.closebtn>.closeicon::after{
+    content: ' ';
+    position: absolute;
+    width: 18px;
+    height: 16px;
+    left:8px;
+    top:6px;
+    border-bottom: 2px solid;
+    border-bottom-color: inherit;
+    transform: rotate(90deg);
+}
+.emeditor>.dialog>.main{
+    flex-grow: 1;
+    width: 100%;
+    padding: 8px;
+}
+.emeditor>.dialog>.footer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    background-color: #e7e7e7;
+}
+.emeditor>.dialog>.footer>button{
+    width: 80px;
+    height: 28px;
+    margin: 6px;
+    cursor:pointer;
+}
+.emeditor>.dialog>.footer>button:hover{
+    font-weight: 700;
+    color: #00D1B2;
+}
+.emeditor>.dialog .txtinput{
+    width: 100%;
+    border: 1px solid #e3e3e3;
+    font-size: 14px;
+    color: #555555;
+}
+.emeditor>.dialog .txtinput:hover{
+    border-color: #00D1B2;
+}
+.emtab{
+    display: flex;
+    flex-direction: column;
+}
+.emtab>.tabbar{
+    display: flex;
+    width: 100%;
+    height: 32px;
+    padding: 2px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.emtab>.tabbar>li{
+    width: max-content;
+    min-width: 60px;
+    height: 100%;
+    list-style-type: none;
+    font-size: 14px;
+    text-align: center;
+    line-height: 28px;
+    color: #888888;
+    transition: all ease 200ms;
+    cursor: pointer;
+}
+.emtab>.tabbar>.selected{
+    height: 30px;
+    font-weight: 700;
+    color: #00D1B2;
+    border: 1px solid #e3e3e3;
+    border-bottom: 0px;
+    background: #ffffff;
+}
+.emtab>.tabbar>li:hover{
+    font-weight: 700;
+    color: #00D1B2;
+}
+.emtab>.pages{
+    width: 100%;
+    height: 10px;
+    flex: 1;
+    overflow: hidden;
+    background: #ffffff;
+}
+.emtab>.pages>.page{
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    overflow-y: auto;
+}
+.emtab>.pages>.page>.pic:hover,.emtab>.pages>.page>.elm:hover{
+    box-shadow: 0px 0px 4px #888888;
+    cursor: pointer;
+}
+.emeditor>.main>.cover{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    opacity:0;
+    background:#CCC;
+}
+.emeditor>.main>.resizer{
+    position:absolute;
+    border:1px solid #00D1B2;
+    cursor:hand;
+    user-select: none;
+}
+.emeditor>.main>.resizer>.hand{
+    position:absolute;
+    width:6px;
+    height:6px;
+    overflow:hidden;
+    font-size:0px;
+    background-color:#00D1B2;
+}
+.emeditor>.main>.resizer>.hand0{
+    top: -4px;
+    left: -4px;
+    cursor:nw-resize;
+}
+.emeditor>.main>.resizer>.hand1{
+    top: -4px;
+    left: 50%;
+    margin-left: -4px;
+    cursor:n-resize;
+}
+.emeditor>.main>.resizer>.hand2{
+    top: -4px;
+    right: -4px;
+    cursor:ne-resize;
+}
+.emeditor>.main>.resizer>.hand3{
+    top: 50%;
+    left: -4px;
+    margin-top: -4px;
+    cursor:w-resize;
+}
+.emeditor>.main>.resizer>.hand4{
+    top: 50%;
+    right: -4px;
+    margin-top: -4px;
+    cursor:e-resize;
+}
+.emeditor>.main>.resizer>.hand5{
+    bottom: -4px;
+    left: -4px;
+    cursor:sw-resize;
+}
+.emeditor>.main>.resizer>.hand6{
+    bottom: -4px;
+    left: 50%;
+    margin-left: -4px;
+    cursor:s-resize;
+}
+.emeditor>.main>.resizer>.hand7{
+    bottom: -4px;
+    right: -4px;
+    cursor:se-resize;
+}
+.emeditor>.main>.resizer>.imagepanel{
+    position: absolute;
+    left: 0px;
+    bottom: -68px;
+    width: 350px;
+    height: 60px;
+    border: 1px solid #e3e3e3;
+    background-color: #f3f3f3;
+    z-index: 800;
+}
+.emeditor>.main>.resizer>.imagepanel>ul{
+    position: relative;
+    display:flex;
+    list-style-type: none;
+    width:100%;
+    height:30px;
+    padding-top: 4px;
+    z-index: 0;
+}
+.emeditor>.main>.resizer>.imagepanel>ul>.imageborder{
+    display:flex;
+    width:50px;
+    height:20px;
+    border:1px solid #e3e3e3;
+    border-radius:3px;
+    list-style-type:none;
+    cursor:pointer;
+}
+.emeditor>.main>.resizer>.imagepanel>ul>.imageborder>.title{
+    width:32px;
+    margin:0px 2px 0px 2px;
+    font-size:14px;
+    color:#333333;
+}
+.emeditor>.main>.resizer>.imagepanel>ul>.imageborder>.arrow{
+    width:0px;
+    height:0px;
+    margin-top:8px;
+    transition:0.4s;
+    border-left: 4px solid transparent;
+    border-right:4px solid transparent;
+    border-top:4px solid #aaaaaa;
+}
+.emeditor>.main>.resizer>.imagepanel>ul>.imageborder>.up{
+    transform:rotate(-180deg);
+}
+.emeditor>.main>.resizer>.imagepanel>ul>li{
+    display:flex;
+    width:66px;
+    height:24px;
+    margin-left:6px;
+}
+.emeditor>.main>.resizer>.imagepanel>ul>li .btnicon{
+    width: 18px;
+    height: 18px;
+    border: 1px solid #e3e3e3;
+    border-radius:3px;
+    cursor: pointer;
+}
+.emeditor>.main>.resizer .btn{
+    position:relative;
+    height:24px;
+    list-style-type:none;
+    margin:0px 4px 0px 6px;
+    text-align: center;
+    font-size:14px;
+    line-height:24px;
+    color:#353535;
+    cursor:pointer;
+}
+.emeditor>.main>.resizer .btn:hover,.emeditor>.main>.resizer>.imagepanel>ul>li>.btnicon:hover{
+    fill:#00D1B2;
+    color:#00D1B2
+}
+.emeditor>.main>.resizer .btn:active{
+    color:#019982
+}
+.emeditor>.main>.resizer>.imagepanel .borderboxp{
+    width:40px;
+    padding:4px 0px 0px 6px;
+    font-size:14px;
+    color:#555555;
+}
+.emeditor>.main>.sectionbar{
+    position:absolute;
+    width:340px;
+    height:60px;
+    border:1px solid #eeeeee;
+    background-color:#fcfcfc;
+    z-index:800;
+}
+.emeditor>.main>.sectionbar>ul{
+    display:flex;
+    width:100%;
+    height:30px;
+    padding-top:6px;
+}
+.emeditor>.main .sectionbtn{
+    width:48px;
+    height:24px;
+    margin-left:6px;
+    text-align: center;
+    font-size:14px;
+    line-height:24px;
+    color:#353535;
+    user-select: none;
+    cursor:pointer;
+    list-style-type:none;
+}
+.emeditor>.main .sectionbtn:hover{
+    color:#00D1B2
+}
+.emeditor>.main .sectionbtn:active{
+    color:#019982
+}
+.emeditor>.main .sectioncolor{
+    width:24px;
+    height:24px;
+    margin:2px 0px 0px 6px;
+    border:1px solid #eeeeee;
+    border-radius:12px;
+    list-style-type:none;
+    box-sizing:border-box;
+    cursor:pointer;
+}
+.emeditor>.main .sectioncolor:hover{
+    border:1px solid #00D1B2;
+}
